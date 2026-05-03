@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Nexo Pride</title>
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-black text-white flex">
+
+<!-- SIDEBAR -->
+<div class="w-64 bg-zinc-900 h-screen p-5 border-r border-zinc-800">
+
+  <h1 class="text-xl font-bold text-red-500 mb-10">NEXO</h1>
+
+  <ul class="space-y-4 text-sm">
+    <li class="text-red-400">🏠 Dashboard</li>
+    <li class="hover:text-red-400 cursor-pointer">📄 Dokumentasi</li>
+    <li class="hover:text-red-400 cursor-pointer">🔑 API Key</li>
+    <li class="hover:text-red-400 cursor-pointer">⚙️ Settings</li>
+  </ul>
+
+</div>
+
+<!-- MAIN -->
+<div class="flex-1 p-6">
+
+  <!-- TOP -->
+  <div class="flex justify-between items-center mb-8">
+    <h2 class="text-2xl font-bold">Dashboard</h2>
+    <span class="text-gray-400 text-sm">Welcome To Nexo Pride</span>
+  </div>
+
+  <!-- STATS -->
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg hover:scale-105 transition">
+      <p class="text-gray-400 text-sm">👥 Member</p>
+      <h2 class="text-3xl font-bold mt-2">60+</h2>
+    </div>
+
+    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg hover:scale-105 transition">
+      <p class="text-gray-400 text-sm">⚡ Total Babu</p>
+      <h2 class="text-3xl font-bold mt-2">120+</h2>
+    </div>
+
+    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg hover:scale-105 transition">
+      <p class="text-gray-400 text-sm">🔥 Pro Player</p>
+      <h2 class="text-3xl font-bold mt-2">4</h2>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
