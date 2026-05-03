@@ -16,12 +16,20 @@
   </style>
 </head>
 
-<body class="bg-black text-white flex">
+<body class="bg-black text-white">
 
 <!-- SIDEBAR -->
-<div id="sidebar" class="fixed md:static z-40 w-64 bg-zinc-900 h-screen p-5 border-r border-zinc-800 transform -translate-x-full md:translate-x-0 transition duration-300">
+<div id="sidebar" class="fixed top-0 left-0 z-50 w-64 h-full bg-zinc-900 p-5 border-r border-zinc-800 transform -translate-x-full transition duration-300">
 
-  <h1 class="text-xl font-bold text-red-500 mb-10">NEXO</h1>
+  <!-- HEADER SIDEBAR -->
+  <div class="flex justify-between items-center mb-10">
+    <h1 class="text-xl font-bold text-red-500">NEXO</h1>
+
+    <!-- TOMBOL CLOSE -->
+    <button onclick="toggleSidebar()" class="text-xl">
+      ✖
+    </button>
+  </div>
 
   <ul class="space-y-4 text-sm">
     <li class="text-red-400">🏠 Dashboard</li>
@@ -33,7 +41,7 @@
 </div>
 
 <!-- MAIN -->
-<div class="flex-1 p-6">
+<div class="p-6 max-w-6xl mx-auto">
 
   <!-- TOP -->
   <div class="flex justify-between items-center mb-8">
