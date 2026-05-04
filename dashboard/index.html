@@ -19,21 +19,24 @@
 <body class="bg-black text-white">
 
 <!-- SIDEBAR -->
-<div id="sidebar" class="fixed top-0 left-0 z-50 w-64 h-full bg-zinc-900 p-5 border-r border-zinc-800 transform -translate-x-full transition duration-300">
+<div id="sidebar" class="fixed top-0 left-0 z-50 w-64 h-full bg-black p-5 border-r border-zinc-800 transform -translate-x-full transition duration-300">
 
-  <!-- HEADER SIDEBAR -->
-  <div class="flex justify-between items-center mb-10">
-    <h1 class="text-xl font-bold">
-      <span class="text-white">NEXO PRIDE</span>
-      <span class="text-red-500"> ERAA</span>
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-lg font-bold">
+      <span class="text-white">NEXO</span>
+      <span class="text-red-500"> PRIDE.</span>
     </h1>
 
-    <button onclick="toggleSidebar()" class="text-xl">✖</button>
+    <button onclick="toggleSidebar()">✖</button>
   </div>
 
-  <ul class="space-y-4 text-sm">
-    <li class="text-red-400">🏠 Dashboard</li>
-    <li class="hover:text-red-400 cursor-pointer">📄 Dokumentasi</li>
+  <!-- SEARCH -->
+  <input type="text" placeholder="Cari..."
+    class="w-full mb-6 px-3 py-2 rounded bg-zinc-900 border border-zinc-800 text-sm outline-none">
+
+  <ul class="space-y-3 text-sm">
+    <li class="bg-red-500 text-white px-3 py-2 rounded-lg">🏠 Dashboard</li>
+    <li class="hover:text-red-400 cursor-pointer">🌐 Media Sosial Nexo Pride</li>
     <li class="hover:text-red-400 cursor-pointer">🔑 API Key</li>
     <li class="hover:text-red-400 cursor-pointer">⚙️ Settings</li>
   </ul>
@@ -41,62 +44,55 @@
 </div>
 
 <!-- MAIN -->
-<div class="p-6 max-w-6xl mx-auto">
+<div class="p-5 max-w-3xl mx-auto">
 
   <!-- HEADER -->
-  <div class="flex justify-between items-center mb-8">
+  <div class="flex justify-between items-center mb-6">
 
-    <!-- KIRI -->
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-3">
       <button onclick="toggleSidebar()" class="text-2xl">☰</button>
-      <h2 class="text-2xl font-bold">Dashboard</h2>
+      <h2 class="text-xl font-semibold">Dasbor</h2>
     </div>
 
-    <!-- KANAN (LOGO) -->
-    <img src="logo.png" class="w-10 h-10 object-contain">
-
+    <img src="logo.png" class="w-8 h-8">
   </div>
 
-  <!-- STATS -->
-  <div class="grid md:grid-cols-3 gap-6">
+  <!-- CARD LIST (OURIN STYLE) -->
+  <div class="space-y-4">
 
-    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg hover:scale-105 transition">
-      <p class="text-gray-400 text-sm">👥 Member</p>
+    <!-- CARD -->
+    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800">
+      <p class="text-gray-400 text-sm flex items-center gap-2">👥 Member</p>
       <h2 class="text-3xl font-bold mt-2">60+</h2>
     </div>
 
-    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg hover:scale-105 transition">
+    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800">
       <p class="text-gray-400 text-sm">⚡ Total Babu</p>
       <h2 class="text-3xl font-bold mt-2">120+</h2>
     </div>
 
-    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg hover:scale-105 transition">
+    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800">
       <p class="text-gray-400 text-sm">🔥 Pro Player</p>
       <h2 class="text-3xl font-bold mt-2">4</h2>
     </div>
 
   </div>
 
-</div>
-
-<!-- EXTRA CARDS -->
-<div class="grid md:grid-cols-3 gap-6 mt-10">
-
   <!-- RULES -->
-  <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg">
-    <h3 class="text-lg font-bold mb-3">📜 Rules Nexo Pride</h3>
+  <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 mt-6">
+    <h3 class="font-bold mb-3">📜 Rules Nexo Pride</h3>
 
-    <ul class="text-sm text-gray-300 space-y-2">
+    <ol class="text-sm text-gray-300 space-y-2">
       <li>1. Sering Ikut War</li>
       <li>2. Jangan Melakukan Spam Di Grup</li>
-      <li>3. Di Larang Berjualan Atau Promosi</li>
-      <li>4. Gaboleh Membawa-Bawa Orang Tua</li>
-    </ul>
+      <li>3. Dilarang Berjualan / Promosi</li>
+      <li>4. Gaboleh Membawa Orang Tua</li>
+    </ol>
   </div>
 
   <!-- THANKS -->
-  <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg">
-    <h3 class="text-lg font-bold mb-3">🙏 Terimakasih Kepada</h3>
+  <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 mt-4">
+    <h3 class="font-bold mb-3">🙏 Terimakasih Kepada</h3>
 
     <div class="grid grid-cols-2 text-sm text-gray-300 gap-2">
       <span>• Tuhan Yang Maha Esa</span>
@@ -104,21 +100,21 @@
       <span>• Keluarga Dan Orang Tua</span>
       <span>• Chat GPT</span>
       <span>• All Member Nexo</span>
-      <span>• Para Pengguna Website</span>
+      <span>• Pengguna Website</span>
     </div>
   </div>
 
   <!-- JOIN -->
-  <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg">
-    <h3 class="text-lg font-bold mb-3">🚀 Mau Join Nexo Pride?</h3>
+  <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 mt-4">
+    <h3 class="font-bold mb-3">🚀 Mau Join Nexo Pride?</h3>
 
     <p class="text-sm text-gray-300 mb-4">
-      Tertarik Join Nexo Pride? Silahkan tekan tombol di bawah ini untuk masuk ke grub optest Nexo Pride.
+      Tertarik join? Klik tombol di bawah untuk masuk ke grup optest.
     </p>
 
     <a href="https://chat.whatsapp.com/CzqMbvWW8sCGUbK9q9EN47?mode=hq2tcla"
-       class="block text-center bg-green-600 hover:bg-green-700 transition px-4 py-2 rounded-lg font-semibold">
-       ( WhatsApp ) Grup Optest Nexo Pride
+      class="block text-center bg-red-500 hover:bg-red-600 transition px-4 py-2 rounded-lg font-semibold">
+      WhatsApp Grup
     </a>
   </div>
 
@@ -126,8 +122,7 @@
 
 <script>
 function toggleSidebar() {
-  const sidebar = document.getElementById("sidebar");
-  sidebar.classList.toggle("-translate-x-full");
+  document.getElementById("sidebar").classList.toggle("-translate-x-full");
 }
 </script>
 
