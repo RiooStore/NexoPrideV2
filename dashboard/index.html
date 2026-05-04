@@ -9,17 +9,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
+<style>
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* glow merah */
+.glow {
+  box-shadow: 0 0 25px rgba(255, 0, 80, 0.15);
+}
+</style>
 </head>
 
 <body class="bg-black text-white">
 
 <!-- SIDEBAR -->
-<div id="sidebar" class="fixed top-0 left-0 z-50 w-64 h-full bg-black p-5 border-r border-zinc-800 transform -translate-x-full transition duration-300">
+<div id="sidebar" class="fixed top-0 left-0 z-50 w-64 h-full bg-black/90 backdrop-blur p-5 border-r border-zinc-800 transform -translate-x-full transition duration-300">
 
   <div class="flex justify-between items-center mb-8">
     <h1 class="text-lg font-bold">
@@ -51,7 +56,10 @@
 
     <div class="flex items-center gap-3">
       <button onclick="toggleSidebar()" class="text-2xl">☰</button>
-      <h2 class="text-xl font-semibold">Dasbor</h2>
+      <h2 class="text-xl font-bold tracking-wide">
+  <span class="text-white">Dasbor</span>
+  <span class="text-red-500">.</span>
+</h2>
     </div>
 
     <img src="logo.png" class="w-8 h-8">
@@ -61,22 +69,24 @@
   <div class="space-y-4">
 
     <!-- CARD -->
-    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800">
+    <div class="bg-zinc-900/80 backdrop-blur p-5 rounded-xl border border-zinc-800 glow hover:scale-[1.02] transition">
       <p class="text-gray-400 text-sm flex items-center gap-2">👥 Member</p>
       <h2 class="text-3xl font-bold mt-2">60+</h2>
     </div>
 
-    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800">
+    <div class="bg-zinc-900/80 backdrop-blur p-5 rounded-xl border border-zinc-800 glow hover:scale-[1.02] transition">
       <p class="text-gray-400 text-sm">⚡ Total Babu</p>
       <h2 class="text-3xl font-bold mt-2">120+</h2>
     </div>
 
-    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800">
+    <div class="bg-zinc-900/80 backdrop-blur p-5 rounded-xl border border-zinc-800 glow hover:scale-[1.02] transition">
       <p class="text-gray-400 text-sm">🔥 Pro Player</p>
       <h2 class="text-3xl font-bold mt-2">4</h2>
     </div>
 
   </div>
+  
+  <div class="border-t border-zinc-800 my-6"></div>
 
   <!-- RULES -->
   <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 mt-6">
@@ -113,7 +123,7 @@
     </p>
 
     <a href="https://chat.whatsapp.com/CzqMbvWW8sCGUbK9q9EN47?mode=hq2tcla"
-      class="block text-center bg-red-500 hover:bg-red-600 transition px-4 py-2 rounded-lg font-semibold">
+      class="block text-center bg-red-500 hover:bg-red-600 glow transition px-4 py-2 rounded-lg font-semibold">
       WhatsApp Grup
     </a>
   </div>
