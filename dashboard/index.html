@@ -5,91 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard Nexo Pride</title>
 
-  <!-- FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
-<style>
-body {
-  font-family: 'Inter', sans-serif;
-}
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
 
-/* glow merah */
-.glow {
-  box-shadow: 0 0 25px rgba(255, 0, 80, 0.15);
-}
-</style>
+    .glow {
+      box-shadow: 0 0 25px rgba(255, 0, 80, 0.15);
+    }
+
+    .active {
+      background-color: #ef4444;
+      color: white;
+    }
+  </style>
 </head>
 
 <body class="bg-black text-white">
 
 <!-- SIDEBAR -->
-<div id="sidebar" class="fixed top-0 left-0 z-50 w-64 h-full bg-black/90 backdrop-blur p-5 border-r border-zinc-800 transform -translate-x-full transition duration-300">
+<div id="sidebar" class="fixed top-0 left-0 z-50 w-64 h-full bg-black/90 backdrop-blur p-5 border-r border-zinc-800 shadow-2xl transform -translate-x-full transition duration-300">
 
   <div class="flex justify-between items-center mb-8">
     <h1 class="text-lg font-bold">
-      <span class="text-white">NEXO</span>
-      <span class="text-red-500"> PRIDE.</span>
+      <span class="text-white">NEXO PRIDE</span>
     </h1>
-
     <button onclick="toggleSidebar()">✖</button>
   </div>
 
-  <!-- SEARCH -->
   <input type="text" placeholder="Cari..."
     class="w-full mb-6 px-3 py-2 rounded bg-zinc-900 border border-zinc-800 text-sm outline-none">
 
   <ul class="space-y-3 text-sm">
-    <li class="bg-red-500 text-white px-3 py-2 rounded-lg">🏠 Dashboard</li>
-    <li class="hover:text-red-400 cursor-pointer">🌐 Media Sosial Nexo Pride</li>
-    <li class="hover:text-red-400 cursor-pointer">🔑 API Key</li>
-    <li class="hover:text-red-400 cursor-pointer">⚙️ Settings</li>
+
+    <li onclick="setActive(this)" class="menu-item active px-3 py-2 rounded-lg cursor-pointer">
+      🏠 Dashboard
+    </li>
+
+    <div class="border-t border-zinc-800 my-3"></div>
+
+    <li onclick="toggleSocial(); setActive(this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
+      🌐 Media Sosial Nexo Pride
+    </li>
+
+    <div id="socialMenu" class="hidden ml-3 mt-2 space-y-2 text-gray-400 text-sm">
+      <a href="#" class="block hover:text-red-400">Instagram</a>
+      <a href="#" class="block hover:text-red-400">WhatsApp</a>
+      <a href="#" class="block hover:text-red-400">TikTok</a>
+    </div>
+
+    <li onclick="setActive(this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
+      🔑 API Key
+    </li>
+
+    <li onclick="setActive(this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
+      ⚙️ Settings
+    </li>
+
   </ul>
 
 </div>
+
+<!-- OVERLAY -->
+<div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 hidden z-40"></div>
 
 <!-- MAIN -->
 <div class="p-5 max-w-3xl mx-auto">
 
   <!-- HEADER -->
   <div class="flex justify-between items-center mb-6">
-
     <div class="flex items-center gap-3">
       <button onclick="toggleSidebar()" class="text-2xl">☰</button>
-      <h2 class="text-xl font-bold tracking-wide">
-  <span class="text-white">Dasbor</span>
-  <span class="text-red-500">.</span>
-</h2>
+      <h2 class="text-xl font-bold">Dashboard</h2>
     </div>
 
     <img src="logo.png" class="w-8 h-8">
   </div>
 
-  <!-- CARD LIST (OURIN STYLE) -->
+  <!-- CARD -->
   <div class="space-y-4">
 
-    <!-- CARD -->
-    <div class="bg-zinc-900/80 backdrop-blur p-5 rounded-xl border border-zinc-800 glow hover:scale-[1.02] transition">
-      <p class="text-gray-400 text-sm flex items-center gap-2">👥 Member</p>
+    <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+      <p class="text-gray-400 text-sm">👥 Member</p>
       <h2 class="text-3xl font-bold mt-2">60+</h2>
     </div>
 
-    <div class="bg-zinc-900/80 backdrop-blur p-5 rounded-xl border border-zinc-800 glow hover:scale-[1.02] transition">
+    <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
       <p class="text-gray-400 text-sm">⚡ Total Babu</p>
       <h2 class="text-3xl font-bold mt-2">120+</h2>
     </div>
 
-    <div class="bg-zinc-900/80 backdrop-blur p-5 rounded-xl border border-zinc-800 glow hover:scale-[1.02] transition">
+    <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
       <p class="text-gray-400 text-sm">🔥 Pro Player</p>
       <h2 class="text-3xl font-bold mt-2">4</h2>
     </div>
 
   </div>
-  
+
   <div class="border-t border-zinc-800 my-6"></div>
 
   <!-- RULES -->
-  <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 mt-6">
+  <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
     <h3 class="font-bold mb-3">📜 Rules Nexo Pride</h3>
 
     <ol class="text-sm text-gray-300 space-y-2">
@@ -101,7 +120,7 @@ body {
   </div>
 
   <!-- THANKS -->
-  <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 mt-4">
+  <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow mt-4">
     <h3 class="font-bold mb-3">🙏 Terimakasih Kepada</h3>
 
     <div class="grid grid-cols-2 text-sm text-gray-300 gap-2">
@@ -115,7 +134,7 @@ body {
   </div>
 
   <!-- JOIN -->
-  <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 mt-4">
+  <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow mt-4">
     <h3 class="font-bold mb-3">🚀 Mau Join Nexo Pride?</h3>
 
     <p class="text-sm text-gray-300 mb-4">
@@ -123,7 +142,7 @@ body {
     </p>
 
     <a href="https://chat.whatsapp.com/CzqMbvWW8sCGUbK9q9EN47?mode=hq2tcla"
-      class="block text-center bg-red-500 hover:bg-red-600 glow transition px-4 py-2 rounded-lg font-semibold">
+      class="block text-center bg-red-500 hover:bg-red-600 transition px-4 py-2 rounded-lg font-semibold">
       WhatsApp Grup
     </a>
   </div>
@@ -133,6 +152,18 @@ body {
 <script>
 function toggleSidebar() {
   document.getElementById("sidebar").classList.toggle("-translate-x-full");
+  document.getElementById("overlay").classList.toggle("hidden");
+}
+
+function toggleSocial() {
+  document.getElementById("socialMenu").classList.toggle("hidden");
+}
+
+function setActive(el) {
+  document.querySelectorAll(".menu-item").forEach(item => {
+    item.classList.remove("active");
+  });
+  el.classList.add("active");
 }
 </script>
 
