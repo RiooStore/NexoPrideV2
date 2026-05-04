@@ -19,7 +19,6 @@
 
     .active {
       background-color: #ef4444;
-      color: white;
     }
   </style>
 </head>
@@ -30,9 +29,7 @@
 <div id="sidebar" class="fixed top-0 left-0 z-50 w-64 h-full bg-black/90 backdrop-blur p-5 border-r border-zinc-800 shadow-2xl transform -translate-x-full transition duration-300">
 
   <div class="flex justify-between items-center mb-8">
-    <h1 class="text-lg font-bold">
-      <span class="text-white">NEXO PRIDE</span>
-    </h1>
+    <h1 class="text-lg font-bold text-white">NEXO PRIDE</h1>
     <button onclick="toggleSidebar()">✖</button>
   </div>
 
@@ -41,27 +38,21 @@
 
   <ul class="space-y-3 text-sm">
 
-    <li onclick="setActive(this)" class="menu-item active px-3 py-2 rounded-lg cursor-pointer">
+    <li onclick="openPage('dashboard', this)" class="menu-item active px-3 py-2 rounded-lg cursor-pointer">
       🏠 Dashboard
     </li>
 
     <div class="border-t border-zinc-800 my-3"></div>
 
-    <li onclick="toggleSocial(); setActive(this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
-      🌐 Media Sosial Nexo Pride
+    <li onclick="openPage('social', this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
+      🌐 Media Sosial Nexo
     </li>
 
-    <div id="socialMenu" class="hidden ml-3 mt-2 space-y-2 text-gray-400 text-sm">
-      <a href="#" class="block hover:text-red-400">Instagram</a>
-      <a href="#" class="block hover:text-red-400">WhatsApp</a>
-      <a href="#" class="block hover:text-red-400">TikTok</a>
-    </div>
-
-    <li onclick="setActive(this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
+    <li onclick="openPage('api', this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
       🔑 API Key
     </li>
 
-    <li onclick="setActive(this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
+    <li onclick="openPage('settings', this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
       ⚙️ Settings
     </li>
 
@@ -79,14 +70,13 @@
   <div class="flex justify-between items-center mb-6">
     <div class="flex items-center gap-3">
       <button onclick="toggleSidebar()" class="text-2xl">☰</button>
-      <h2 class="text-xl font-bold">Dashboard</h2>
+      <h2 id="pageTitle" class="text-xl font-bold">Dashboard</h2>
     </div>
-
     <img src="logo.png" class="w-8 h-8">
   </div>
 
-  <!-- CARD -->
-  <div class="space-y-4">
+  <!-- DASHBOARD PAGE -->
+  <div id="dashboard" class="page space-y-4">
 
     <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
       <p class="text-gray-400 text-sm">👥 Member</p>
@@ -103,48 +93,70 @@
       <h2 class="text-3xl font-bold mt-2">4</h2>
     </div>
 
+    <div class="border-t border-zinc-800 my-6"></div>
+
+    <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+      <h3 class="font-bold mb-3">📜 Rules Nexo Pride</h3>
+      <ol class="text-sm text-gray-300 space-y-2">
+        <li>1. Sering Ikut War</li>
+        <li>2. Jangan Spam Di Grup</li>
+        <li>3. Dilarang Promosi</li>
+        <li>4. Jangan Membawa Orang Tua</li>
+      </ol>
+    </div>
+
+    <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+      <h3 class="font-bold mb-3">🙏 Terimakasih Kepada</h3>
+      <div class="grid grid-cols-2 text-sm text-gray-300 gap-2">
+        <span>• Tuhan Yang Maha Esa</span>
+        <span>• Pembuat Website</span>
+        <span>• Orang Tua</span>
+        <span>• Chat GPT</span>
+        <span>• Member Nexo</span>
+        <span>• Pengguna</span>
+      </div>
+    </div>
+
+    <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+      <h3 class="font-bold mb-3">🚀 Mau Join?</h3>
+      <p class="text-sm text-gray-300 mb-4">
+        Klik tombol di bawah untuk masuk grup optest.
+      </p>
+
+      <a href="https://chat.whatsapp.com/CzqMbvWW8sCGUbK9q9EN47?mode=hq2tcla"
+        class="block text-center bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg font-semibold">
+        WhatsApp Grup
+      </a>
+    </div>
+
   </div>
 
-  <div class="border-t border-zinc-800 my-6"></div>
-
-  <!-- RULES -->
-  <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
-    <h3 class="font-bold mb-3">📜 Rules Nexo Pride</h3>
-
-    <ol class="text-sm text-gray-300 space-y-2">
-      <li>1. Sering Ikut War</li>
-      <li>2. Jangan Melakukan Spam Di Grup</li>
-      <li>3. Dilarang Berjualan / Promosi</li>
-      <li>4. Gaboleh Membawa Orang Tua</li>
-    </ol>
-  </div>
-
-  <!-- THANKS -->
-  <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow mt-4">
-    <h3 class="font-bold mb-3">🙏 Terimakasih Kepada</h3>
-
-    <div class="grid grid-cols-2 text-sm text-gray-300 gap-2">
-      <span>• Tuhan Yang Maha Esa</span>
-      <span>• Pembuat Base Website</span>
-      <span>• Keluarga Dan Orang Tua</span>
-      <span>• Chat GPT</span>
-      <span>• All Member Nexo</span>
-      <span>• Pengguna Website</span>
+  <!-- SOCIAL PAGE -->
+  <div id="social" class="page hidden">
+    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow">
+      <h3 class="font-bold mb-3">🌐 Media Sosial Nexo</h3>
+      <div class="space-y-2 text-gray-300 text-sm">
+        <p>Instagram: @nexo</p>
+        <p>WhatsApp: Grup Nexo</p>
+        <p>TikTok: @nexo</p>
+      </div>
     </div>
   </div>
 
-  <!-- JOIN -->
-  <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow mt-4">
-    <h3 class="font-bold mb-3">🚀 Mau Join Nexo Pride?</h3>
+  <!-- API PAGE -->
+  <div id="api" class="page hidden">
+    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow">
+      <h3 class="font-bold">🔑 API Key</h3>
+      <p class="text-gray-400 text-sm mt-2">Coming soon...</p>
+    </div>
+  </div>
 
-    <p class="text-sm text-gray-300 mb-4">
-      Tertarik join? Klik tombol di bawah untuk masuk ke grup optest.
-    </p>
-
-    <a href="https://chat.whatsapp.com/CzqMbvWW8sCGUbK9q9EN47?mode=hq2tcla"
-      class="block text-center bg-red-500 hover:bg-red-600 transition px-4 py-2 rounded-lg font-semibold">
-      WhatsApp Grup
-    </a>
+  <!-- SETTINGS PAGE -->
+  <div id="settings" class="page hidden">
+    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow">
+      <h3 class="font-bold">⚙️ Settings</h3>
+      <p class="text-gray-400 text-sm mt-2">Pengaturan akan segera hadir...</p>
+    </div>
   </div>
 
 </div>
@@ -155,15 +167,27 @@ function toggleSidebar() {
   document.getElementById("overlay").classList.toggle("hidden");
 }
 
-function toggleSocial() {
-  document.getElementById("socialMenu").classList.toggle("hidden");
-}
+function openPage(pageId, el) {
 
-function setActive(el) {
+  document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
+  document.getElementById(pageId).classList.remove("hidden");
+
+  const titles = {
+    dashboard: "Dashboard",
+    social: "Media Sosial Nexo",
+    api: "API Key",
+    settings: "Settings"
+  };
+
+  document.getElementById("pageTitle").innerText = titles[pageId];
+
   document.querySelectorAll(".menu-item").forEach(item => {
     item.classList.remove("active");
   });
+
   el.classList.add("active");
+
+  toggleSidebar();
 }
 </script>
 
