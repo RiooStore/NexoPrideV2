@@ -1,144 +1,204 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nexo Pride Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Nexo Pride</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<style>
-body { font-family: 'Inter', sans-serif; }
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
 
-.glow {
-  box-shadow: 0 0 25px rgba(255,0,80,0.15);
-}
+    .glow {
+      box-shadow: 0 0 25px rgba(255, 0, 80, 0.15);
+    }
 
-.active {
-  background-color: #ef4444;
-}
-
-.modal {
-  backdrop-filter: blur(6px);
-}
-
-.slide {
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.4s ease;
-}
-
-.slide.open {
-  max-height: 500px;
-}
-</style>
+    .active {
+      background-color: #ef4444;
+    }
+  </style>
 </head>
 
 <body class="bg-black text-white">
 
-<!-- SIDEBAR -->
-<div id="sidebar" class="fixed top-0 left-0 z-50 w-64 h-full bg-black/90 backdrop-blur p-5 border-r border-zinc-800 transform -translate-x-full transition">
+<div id="logoModal" class="fixed inset-0 hidden items-center justify-center bg-black/60 z-50">
 
-  <div class="flex justify-between mb-6">
-    <h1 class="font-bold">NEXO PRIDE</h1>
+  <div class="bg-zinc-900 p-6 rounded-xl text-center max-w-sm border border-zinc-800">
+    <img src="logo.png" class="w-20 mx-auto mb-4">
+
+    <h2 class="font-bold text-lg">NEXO PRIDE ERAA</h2>
+    <p class="text-gray-400 text-sm mt-2">OTW FEMES CC</p>
+
+    <button onclick="closeModal()" class="mt-4 bg-red-500 px-4 py-2 rounded-lg">
+      Tutup
+    </button>
+  </div>
+
+</div>
+
+<!-- SIDEBAR -->
+<div id="sidebar" class="fixed top-0 left-0 z-50 w-64 h-full bg-black/90 backdrop-blur p-5 border-r border-zinc-800 shadow-2xl transform -translate-x-full transition duration-300">
+
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-lg font-bold text-white">NEXO PRIDE</h1>
     <button onclick="toggleSidebar()">✖</button>
   </div>
 
+  <input type="text" placeholder="Cari..."
+    class="w-full mb-6 px-3 py-2 rounded bg-zinc-900 border border-zinc-800 text-sm outline-none">
+
   <ul class="space-y-3 text-sm">
 
-    <li onclick="openPage('dashboard', this)" class="menu-item active px-3 py-2 rounded cursor-pointer">🏠 Dashboard</li>
+    <li onclick="openPage('dashboard', this)" class="menu-item active px-3 py-2 rounded-lg cursor-pointer">
+      🏠 Dashboard
+    </li>
 
-    <div class="border-t border-zinc-800"></div>
+    <div class="border-t border-zinc-800 my-3"></div>
 
-    <li onclick="openPage('social', this)" class="menu-item px-3 py-2 cursor-pointer">🌐 Media Sosial</li>
+    <li onclick="openPage('social', this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
+      🌐 Media Sosial Nexo
+    </li>
 
-    <li onclick="openPage('babu', this)" class="menu-item px-3 py-2 cursor-pointer">👑 All Babu</li>
+    <li onclick="openPage('babu', this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
+      👑 All Babu
+    </li>
+
+    <li onclick="openPage('settings', this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
+      ⚙️ Settings
+    </li>
 
   </ul>
+
 </div>
 
 <!-- OVERLAY -->
-<div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 hidden"></div>
-
-<!-- MODAL LOGO -->
-<div id="logoModal" class="fixed inset-0 hidden items-center justify-center bg-black/60 modal z-50">
-  <div class="bg-zinc-900 p-6 rounded-xl text-center max-w-sm">
-    <img src="logo.png" class="w-20 mx-auto mb-4">
-    <h2 class="font-bold text-lg mb-2">NEXO PRIDE ERAA</h2>
-    <p class="text-gray-400 text-sm">OTW FEMES CC</p>
-    <button onclick="closeModal()" class="mt-4 bg-red-500 px-4 py-2 rounded">Tutup</button>
-  </div>
-</div>
+<div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 hidden z-40"></div>
 
 <!-- MAIN -->
 <div class="p-5 max-w-3xl mx-auto">
 
-<!-- HEADER -->
-<div class="flex justify-between mb-6">
-  <div class="flex gap-3">
-    <button onclick="toggleSidebar()">☰</button>
-    <h2 id="pageTitle" class="font-bold">Dashboard</h2>
+  <!-- HEADER -->
+  <div class="flex justify-between items-center mb-6">
+    <div class="flex items-center gap-3">
+      <button onclick="toggleSidebar()" class="text-2xl">☰</button>
+      <h2 id="pageTitle" class="text-xl font-bold">Dashboard</h2>
+    </div>
+    <img src="logo.png" onclick="openModal()" class="w-8 h-8 cursor-pointer">
   </div>
 
-  <!-- LOGO CLICK -->
-  <img src="logo.png" onclick="openModal()" class="w-8 cursor-pointer">
-</div>
+  <!-- DASHBOARD PAGE -->
+  <div id="dashboard" class="page space-y-4">
 
-<!-- DASHBOARD -->
-<div id="dashboard" class="page space-y-4">
+    <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+      <p class="text-gray-400 text-sm">👥 Member</p>
+      <h2 class="text-3xl font-bold mt-2">60+</h2>
+    </div>
 
-  <div class="bg-zinc-900 p-5 rounded glow">
-    👥 Member
-    <h2 class="text-3xl">60+</h2>
+    <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+      <p class="text-gray-400 text-sm">⚡ Total Babu</p>
+      <h2 class="text-3xl font-bold mt-2">120+</h2>
+    </div>
+
+    <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+      <p class="text-gray-400 text-sm">🔥 Pro Player</p>
+      <h2 class="text-3xl font-bold mt-2">4</h2>
+    </div>
+
+    <div class="border-t border-zinc-800 my-6"></div>
+
+    <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+      <h3 class="font-bold mb-3">📜 Rules Nexo Pride</h3>
+      <ol class="text-sm text-gray-300 space-y-2">
+        <li>1. Sering Ikut War</li>
+        <li>2. Jangan Spam Di Grup</li>
+        <li>3. Dilarang Promosi</li>
+        <li>4. Jangan Membawa Orang Tua</li>
+      </ol>
+    </div>
+
+    <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+      <h3 class="font-bold mb-3">🙏 Terimakasih Kepada</h3>
+      <div class="grid grid-cols-2 text-sm text-gray-300 gap-2">
+        <span>• Tuhan Yang Maha Esa</span>
+        <span>• Pembuat Website</span>
+        <span>• Orang Tua</span>
+        <span>• Chat GPT</span>
+        <span>• Member Nexo</span>
+        <span>• Pengguna</span>
+      </div>
+    </div>
+
+    <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+      <h3 class="font-bold mb-3">🚀 Mau Join?</h3>
+      <p class="text-sm text-gray-300 mb-4">
+        Klik tombol di bawah untuk masuk grup optest.
+      </p>
+
+      <a href="https://chat.whatsapp.com/CzqMbvWW8sCGUbK9q9EN47?mode=hq2tcla"
+        class="block text-center bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg font-semibold">
+        WhatsApp Grup
+      </a>
+    </div>
+
   </div>
 
-  <div class="bg-zinc-900 p-5 rounded glow">
-    ⚡ Total Babu
-    <h2 class="text-3xl">120+</h2>
-  </div>
-
-</div>
-
-<!-- SOCIAL -->
-<div id="social" class="page hidden space-y-4">
+  <!-- SOCIAL PAGE -->
+  <div id="social" class="page hidden space-y-4">
 
   <!-- TIKTOK -->
-  <div class="bg-zinc-900 p-5 rounded glow">
-    <h3 class="font-bold">🎵 TikTok</h3>
+  <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow">
+    <h3 class="font-bold mb-2">🎵 TikTok</h3>
+
     <p class="text-sm text-gray-400 mb-3">
-      Ini Tiktok Nexo Pride, bantu follow dan like makasih
+      Ini Tiktok Nexo Pride Bantu Follow Dan Like Makasih
     </p>
-    <a href="#" class="bg-red-500 px-3 py-2 rounded block text-center">Buka TikTok</a>
+
+    <a href="https://www.tiktok.com/@nexopride" class="block text-center bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg">
+      Buka TikTok
+    </a>
   </div>
 
   <!-- WHATSAPP -->
-  <div class="bg-zinc-900 p-5 rounded glow">
-    <h3 class="font-bold">📱 WhatsApp</h3>
+  <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow">
+    <h3 class="font-bold mb-2">📱 WhatsApp</h3>
+
     <p class="text-sm text-gray-400 mb-3">
-      Di bawah ini link grup Nexo Pride, silahkan join
+      Di Bawah Ini Link Grub Nexo Pride Silahkan Join
     </p>
-    <a href="#" class="bg-green-500 px-3 py-2 rounded block text-center">Join Grup</a>
+
+    <a href="https://chat.whatsapp.com/CzqMbvWW8sCGUbK9q9EN47?mode=hq2tcla" class="block text-center bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg">
+      Join Grup
+    </a>
   </div>
 
 </div>
 
-<!-- BABU -->
-<div id="babu" class="page hidden space-y-4">
+  <!-- ALL BABU PAGE -->
+  <div id="babu" class="page hidden space-y-4">
 
-  <!-- CARD -->
-  <div onclick="toggleSlide()" class="bg-zinc-900 p-5 rounded glow cursor-pointer">
+  <div onclick="toggleSlide()" class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow cursor-pointer">
+
     <h3 class="font-bold">• Firaun</h3>
     <p class="text-sm text-gray-400">Nexo Win 2-0</p>
 
     <!-- SLIDE -->
-    <div id="slideBox" class="slide mt-4 space-y-3">
+    <div id="slideBox" class="hidden mt-4 space-y-3">
 
-      <div class="bg-zinc-800 h-40 flex items-center justify-center">Foto CC</div>
+      <div class="bg-zinc-800 h-40 flex items-center justify-center rounded">
+        Foto CC
+      </div>
 
       <div class="grid grid-cols-2 gap-2">
-        <div class="bg-zinc-800 h-32 flex items-center justify-center">Match 1</div>
-        <div class="bg-zinc-800 h-32 flex items-center justify-center">Match 2</div>
+        <div class="bg-zinc-800 h-32 flex items-center justify-center rounded">
+          Match 1
+        </div>
+        <div class="bg-zinc-800 h-32 flex items-center justify-center rounded">
+          Match 2
+        </div>
       </div>
 
     </div>
@@ -147,43 +207,58 @@ body { font-family: 'Inter', sans-serif; }
 
 </div>
 
+  <!-- SETTINGS PAGE -->
+  <div id="settings" class="page hidden">
+    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow">
+      <h3 class="font-bold">⚙️ Settings</h3>
+      <p class="text-gray-400 text-sm mt-2">Pengaturan akan segera hadir...</p>
+    </div>
+  </div>
+
 </div>
 
 <script>
-function toggleSidebar(){
-  sidebar.classList.toggle("-translate-x-full");
-  overlay.classList.toggle("hidden");
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("-translate-x-full");
+  document.getElementById("overlay").classList.toggle("hidden");
 }
 
-function openPage(page, el){
-  document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));
-  document.getElementById(page).classList.remove("hidden");
-
-  document.querySelectorAll(".menu-item").forEach(i=>i.classList.remove("active"));
-  el.classList.add("active");
-
-  const title = {
-    dashboard:"Dashboard",
-    social:"Media Sosial",
-    babu:"All Babu"
-  };
-
-  pageTitle.innerText = title[page];
-
-  toggleSidebar();
-}
-
+// MODAL LOGO
 function openModal(){
-  logoModal.classList.remove("hidden");
-  logoModal.classList.add("flex");
+  document.getElementById("logoModal").classList.remove("hidden");
+  document.getElementById("logoModal").classList.add("flex");
 }
 
 function closeModal(){
-  logoModal.classList.add("hidden");
+  document.getElementById("logoModal").classList.add("hidden");
 }
 
+// SLIDE BABU
 function toggleSlide(){
-  slideBox.classList.toggle("open");
+  document.getElementById("slideBox").classList.toggle("hidden");
+}
+
+function openPage(pageId, el) {
+
+  document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
+  document.getElementById(pageId).classList.remove("hidden");
+
+  const titles = {
+    dashboard: "Dashboard",
+    social: "Media Sosial Nexo",
+    babu: "All Babu",
+    settings: "Settings"
+  };
+
+  document.getElementById("pageTitle").innerText = titles[pageId];
+
+  document.querySelectorAll(".menu-item").forEach(item => {
+    item.classList.remove("active");
+  });
+
+  el.classList.add("active");
+
+  toggleSidebar();
 }
 </script>
 
