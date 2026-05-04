@@ -30,6 +30,10 @@
     .slide.open {
       max-height: 500px;
     }
+    
+    .slide.open {
+      max-height: 1000px;
+    }
   </style>
 </head>
 
@@ -200,20 +204,42 @@
   <p class="text-sm text-gray-400">Nexo Win 2-0</p>
 
     <!-- SLIDE -->
-    <div id="slideBox" class="slide mt-4 space-y-3">
+<div id="slideBox" class="slide mt-4">
 
-<!-- FOTO CC (PORTRAIT) -->
-<img src="Babuimg/Firaun/Fotocc.jpg"
-     class="w-full h-72 object-cover rounded">
+  <!-- MODAL STYLE BOX -->
+  <div class="bg-black p-5 rounded-2xl border border-zinc-800">
 
-<!-- MATCH -->
-<div class="grid grid-cols-2 gap-2">
+    <!-- CLOSE (OPTIONAL) -->
+    <div class="flex justify-end mb-2">
+      <span onclick="toggleSlide()" class="cursor-pointer text-xl">✖</span>
+    </div>
 
-  <img src="Babuimg/Firaun/M1.jpg"
-       class="w-full aspect-square object-cover rounded">
+    <!-- MATCH ATAS -->
+    <div class="grid grid-cols-2 gap-3 text-center">
 
-  <img src="Babuimg/Firaun/M2.jpg"
-       class="w-full aspect-square object-cover rounded">
+      <div>
+        <p class="mb-1 text-sm">M1</p>
+        <img src="Babuimg/Firaun/M1.jpg"
+             class="w-full aspect-square object-cover rounded-xl border border-zinc-800">
+      </div>
+
+      <div>
+        <p class="mb-1 text-sm">M2</p>
+        <img src="Babuimg/Firaun/M2.jpg"
+             class="w-full aspect-square object-cover rounded-xl border border-zinc-800">
+      </div>
+
+    </div>
+
+    <!-- FOTO CC (BAWAH - PORTRAIT) -->
+    <div class="mt-6 text-center">
+      <p class="mb-2 font-semibold">NAMA CC</p>
+
+      <img src="Babuimg/Firaun/fotocc.jpg"
+           class="w-2/3 mx-auto h-80 object-cover rounded-xl border border-zinc-800">
+    </div>
+
+  </div>
 
 </div>
 
@@ -250,10 +276,6 @@ function closeModal(){
 }
 
 // SLIDE BABU
-function toggleSlide(){
-  document.getElementById("slideBox").classList.toggle("open");
-}
-
 function openPage(pageId, el) {
 
   document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
