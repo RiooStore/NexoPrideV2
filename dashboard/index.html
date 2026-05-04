@@ -20,6 +20,16 @@
     .active {
       background-color: #ef4444;
     }
+    
+    .slide {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .slide.open {
+      max-height: 500px;
+    }
   </style>
 </head>
 
@@ -182,15 +192,19 @@
 
   <div onclick="toggleSlide()" class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow cursor-pointer">
 
-    <h3 class="font-bold">• Firaun</h3>
-    <p class="text-sm text-gray-400">Nexo Win 2-0</p>
+    <div class="flex justify-between items-center">
+  <h3 class="font-bold">• Firaun</h3>
+  <span id="arrow" class="transition duration-300">▼</span>
+  </div>
+
+  <p class="text-sm text-gray-400">Nexo Win 2-0</p>
 
     <!-- SLIDE -->
-    <div id="slideBox" class="hidden mt-4 space-y-3">
+    <div id="slideBox" class="slide mt-4 space-y-3">
 
-      <div class="bg-zinc-800 h-40 flex items-center justify-center rounded">
-        Foto CC
-      </div>
+      <div class="bg-zinc-800 w-full h-64 flex items-center justify-center rounded">
+  Foto CC
+</div>
 
       <div class="grid grid-cols-2 gap-2">
         <div class="bg-zinc-800 h-32 flex items-center justify-center rounded">
@@ -235,7 +249,7 @@ function closeModal(){
 
 // SLIDE BABU
 function toggleSlide(){
-  document.getElementById("slideBox").classList.toggle("hidden");
+  document.getElementById("slideBox").classList.toggle("open");
 }
 
 function openPage(pageId, el) {
@@ -259,6 +273,19 @@ function openPage(pageId, el) {
   el.classList.add("active");
 
   toggleSidebar();
+}
+
+function toggleSlide(){
+  const box = document.getElementById("slideBox");
+  const arrow = document.getElementById("arrow");
+
+  box.classList.toggle("open");
+
+  if(box.classList.contains("open")){
+    arrow.style.transform = "rotate(180deg)";
+  } else {
+    arrow.style.transform = "rotate(0deg)";
+  }
 }
 </script>
 
