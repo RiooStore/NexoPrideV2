@@ -1,101 +1,586 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXO PRIDE</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Nexo Pride</title>
 
-  <!-- FONT INTER -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <script src="https://cdn.tailwindcss.com"></script>
+<style>
+body {
+font-family: 'Inter', sans-serif;
+}
 
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
+.glow {
+box-shadow: 0 0 25px rgba(255, 0, 80, 0.15);
+}
+
+.active {
+background-color: #ef4444;
+}
+
+.slide {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.4s ease;
+}
+
+.slide.open {
+max-height: 2000px;
+}
+</style>
 </head>
 
 <body class="bg-black text-white">
 
-<!-- HERO -->
-<section class="relative text-center py-32 px-6 overflow-hidden">
+<!-- MODAL GAMBAR -->
+<div id="imgModal" class="fixed inset-0 hidden items-center justify-center bg-black/80 z-50">
 
-  <!-- BACKGROUND IMAGE -->
-<div class="absolute inset-0 flex justify-center items-start pt-10 opacity-70">
-  <img src="logo.png" class="w-[320px] md:w-[480px] object-contain drop-shadow-[0_0_40px_rgba(255,255,255,0.3)]">
+<div onclick="closeImgModal()" class="absolute inset-0"></div>
+
+<div class="relative max-w-md w-full p-4 text-center z-10">
+
+<button onclick="closeImgModal()" class="absolute top-2 right-2 text-white text-xl">
+✖
+</button>
+
+<img id="modalImg" src="" class="w-full max-h-[80vh] object-contain rounded-xl mb-3">
+
+<p id="modalText" class="text-gray-300 text-sm"></p>
+
 </div>
 
-  <!-- DARK OVERLAY (biar text jelas) -->
-  <div class="absolute inset-0 bg-black/70"></div>
+</div>
 
-  <!-- CONTENT -->
-  <div class="relative z-10">
-    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight">
-      NEXO PRIDE 
-      <span class="text-red-500 drop-shadow-[0_0_25px_rgba(255,0,0,0.9)]">
-        ERAA
-      </span>
-    </h1>
+<div id="logoModal" class="fixed inset-0 hidden items-center justify-center bg-black/60 z-50">
 
-    <p class="text-gray-400 mt-6 max-w-xl mx-auto text-base leading-relaxed">
-      Welcome To Website Nexo Pride, Website Ini Di Buat Oleh Rioo Dan Teman-Teman
-    </p>
+<div class="bg-zinc-900 p-6 rounded-xl text-center max-w-sm border border-zinc-800">
+<img src="logo.png" class="w-20 mx-auto mb-4">
 
-    <div class="mt-10">
-      <a href="/Dashboard" 
-         class="bg-red-600 px-10 py-4 rounded-xl text-base font-semibold tracking-wide hover:bg-red-700 transition shadow-lg shadow-red-600/40">
-         MASUK KE WEB NEXO PRIDE →
-      </a>
-    </div>
-  </div>
+<h2 class="font-bold text-lg">NEXO PRIDE ERAA</h2>
+<p class="text-gray-400 text-sm mt-2">OTW FEMES CC</p>
 
-</section>
+<button onclick="closeModal()" class="mt-4 bg-red-500 px-4 py-2 rounded-lg">
+Tutup
+</button>
+</div>
 
-<!-- FEATURES -->
-<section class="grid md:grid-cols-3 gap-6 px-6 pb-24 max-w-6xl mx-auto">
+</div>
 
-  <!-- CARD 1 -->
-  <div class="bg-zinc-900/80 backdrop-blur p-6 rounded-2xl hover:scale-105 transition shadow-lg shadow-red-600/10 border border-zinc-800">
-    <h3 class="text-lg font-semibold mb-3 text-red-400">👑 Founder Nexo Pride</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">
-      Nexo Pride Di Buat Pada ( Jumat 6 Februari 2026 ) Dan Di Dirikan Oleh Rioo Dan Aldo,
-      Serta Pettinggi-Pettinggi Lain Yaitu Reyaldi Pengurus Boy, Maul Pengurus War,
-      Dan Fei Pengurus Lds
-    </p>
-  </div>
+<!-- SIDEBAR -->
+<div id="sidebar" class="fixed top-0 left-0 z-50 w-64 h-full bg-black/90 backdrop-blur p-5 border-r border-zinc-800 shadow-2xl transform -translate-x-full transition duration-300">
 
-  <!-- CARD 2 -->
-  <div class="bg-zinc-900/80 backdrop-blur p-6 rounded-2xl hover:scale-105 transition shadow-lg shadow-red-600/10 border border-zinc-800">
-    <h3 class="text-lg font-semibold mb-3 text-red-400">👀 Total Babu Nexo Pride</h3>
-    <p class="text-gray-400 text-sm">
-      Total Babu Nexo Ada Sekitar 120 Lebih
-    </p>
-  </div>
+<div class="flex justify-between items-center mb-8">
+<h1 class="text-lg font-bold text-white">NEXO PRIDE</h1>
+<button onclick="toggleSidebar()">✖</button>
+</div>
 
-  <!-- CARD 3 -->
-  <div class="bg-zinc-900/80 backdrop-blur p-6 rounded-2xl hover:scale-105 transition shadow-lg shadow-red-600/10 border border-zinc-800">
-    <h3 class="text-lg font-semibold mb-3 text-red-400">👤 Pro Player & Player Inti</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">
-      <b>Pro Player:</b><br>
-      - Ziqq<br>
-      - Malk<br>
-      - Fei<br><br>
+<input type="text" placeholder="Cari..."
+class="w-full mb-6 px-3 py-2 rounded bg-zinc-900 border border-zinc-800 text-sm outline-none">
 
-      <b>Player Inti:</b><br>
-      - Adney<br><br>
+<ul class="space-y-3 text-sm">
 
-      Total Member Nexo Ada 60 Lebih
-    </p>
-  </div>
+<li onclick="openPage('Dashboard', this)" class="menu-item active px-3 py-2 rounded-lg cursor-pointer">
+🏠 Dashboard
+</li>
 
-</section>
+<div class="border-t border-zinc-800 my-3"></div>
 
-<!-- FOOTER -->
-<footer class="text-center text-gray-500 pb-6 text-sm">
-  © 2026 NEXO PRIDE
-</footer>
+<li onclick="openPage('social', this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
+🌐 Media Sosial Nexo
+</li>
+
+<li onclick="openPage('babu', this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
+👑 All Babu
+</li>
+
+<li onclick="openPage('settings', this)" class="menu-item px-3 py-2 rounded-lg cursor-pointer hover:text-red-400">
+⚙️ Settings
+</li>
+
+</ul>
+
+</div>
+
+<!-- OVERLAY -->
+<div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 hidden z-40"></div>
+
+<!-- MAIN -->
+<div class="p-5 max-w-3xl mx-auto">
+
+<!-- HEADER -->
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-3">
+<button onclick="toggleSidebar()" class="text-2xl">☰</button>
+<h2 id="pageTitle" class="text-xl font-bold">Dashboard</h2>
+</div>
+<img src="logo.png" onclick="openModal()" class="w-8 h-8 cursor-pointer">
+</div>
+
+<!-- DASHBOARD PAGE -->
+<div id="Dashboard" class="page space-y-4">
+
+<div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+<p class="text-gray-400 text-sm">👥 Member</p>
+<h2 class="text-3xl font-bold mt-2">60+</h2>
+</div>
+
+<div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+<p class="text-gray-400 text-sm">⚡ Total Babu</p>
+<h2 class="text-3xl font-bold mt-2">120+</h2>
+</div>
+
+<div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+<p class="text-gray-400 text-sm">🔥 Pro Player</p>
+<h2 class="text-3xl font-bold mt-2">4</h2>
+</div>
+
+<div class="border-t border-zinc-800 my-6"></div>
+
+<div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+<h3 class="font-bold mb-3">📜 Rules Nexo Pride</h3>
+<ol class="text-sm text-gray-300 space-y-2">
+<li>1. Sering Ikut War</li>
+<li>2. Jangan Spam Di Grup</li>
+<li>3. Dilarang Promosi</li>
+<li>4. Jangan Membawa Orang Tua</li>
+</ol>
+</div>
+
+<div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+<h3 class="font-bold mb-3">🙏 Terimakasih Kepada</h3>
+<div class="grid grid-cols-2 text-sm text-gray-300 gap-2">
+<span>• Tuhan Yang Maha Esa</span>
+<span>• Pembuat Website</span>
+<span>• Orang Tua</span>
+<span>• Chat GPT</span>
+<span>• Member Nexo</span>
+<span>• Pengguna</span>
+</div>
+</div>
+
+<div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800 glow">
+<h3 class="font-bold mb-3">🚀 Mau Join?</h3>
+<p class="text-sm text-gray-300 mb-4">
+Klik tombol di bawah untuk masuk grup optest.
+</p>
+
+<a href="https://chat.whatsapp.com/CzqMbvWW8sCGUbK9q9EN47?mode=hq2tcla"
+class="block text-center bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg font-semibold">
+WhatsApp Grup
+</a>
+</div>
+
+</div>
+
+</div>
+
+<!-- SOCIAL PAGE -->
+<div id="social" class="page hidden space-y-4">
+
+<div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow">
+<h3 class="font-bold mb-2">🎵 TikTok</h3>
+
+<p class="text-sm text-gray-400 mb-3">
+Ini Tiktok Nexo Pride Bantu Follow Dan Like Makasih
+</p>
+
+<a href="https://www.tiktok.com/@nexopride" class="block text-center bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg">
+Buka TikTok
+</a>
+</div>
+
+<div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow">
+<h3 class="font-bold mb-2">📱 WhatsApp</h3>
+
+<p class="text-sm text-gray-400 mb-3">
+Di Bawah Ini Link Grub Nexo Pride Silahkan Join
+</p>
+
+<a href="https://chat.whatsapp.com/CzqMbvWW8sCGUbK9q9EN47?mode=hq2tcla" class="block text-center bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg">
+Join Grup
+</a>
+</div>
+
+</div>
+
+<!-- ALL BABU PAGE -->
+<div id="babu" class="page hidden space-y-4">
+
+<!-- FIRAUN BABU PAGE -->
+<div onclick="toggleSlide(this)" class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow cursor-pointer">
+
+<div class="flex justify-between items-center">
+<h3 class="font-bold">• Firaun</h3>
+<span class="arrow transition duration-300">▼</span>
+</div>
+
+<p class="text-sm text-gray-400">Nexo Win 2-0</p>
+
+<!-- SLIDE -->
+<div class="slide mt-4">
+
+<div class="bg-black p-5 rounded-2xl border border-zinc-800">
+
+<div class="grid grid-cols-2 gap-3 text-center">
+
+<div>
+<p class="mb-1 text-sm">M1</p>
+<img src="Babuimg/Firaun/M1.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 1')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+<div>
+<p class="mb-1 text-sm">M2</p>
+<img src="Babuimg/Firaun/M2.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 2')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+</div>
+
+<div class="mt-6 text-center">
+<p class="mb-2 font-semibold">NAMA CC</p>
+
+<img src="Babuimg/Firaun/Fotocc.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Foto Cc')"
+class="w-2/3 mx-auto max-h-[350px] object-contain rounded-xl border border-zinc-800">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- NOTURTYPE R BABU PAGE -->
+<div onclick="toggleSlide(this)" class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow cursor-pointer">
+
+<div class="flex justify-between items-center">
+<h3 class="font-bold">• Noturtype</h3>
+<span class="arrow transition duration-300">▼</span>
+</div>
+
+<p class="text-sm text-gray-400">Nexo Win 2-1</p>
+
+<!-- SLIDE -->
+<div class="slide mt-4">
+
+<div class="bg-black p-5 rounded-2xl border border-zinc-800">
+
+<div class="grid grid-cols-2 gap-3 text-center">
+
+<div>
+<p class="mb-1 text-sm">M1</p>
+<img src="Babuimg/Noturtype/M1.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 1')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+<div>
+<p class="mb-1 text-sm">M2</p>
+<img src="Babuimg/Noturtype/M2.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 2')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+<div>
+<p class="mb-1 text-sm">M3</p>
+<img src="Babuimg/Noturtype/M3.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 2')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+</div>
+
+<div class="mt-6 text-center">
+<p class="mb-2 font-semibold">NAMA CC</p>
+
+<img src="Babuimg/Noturtype/Fotocc.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Foto Cc')"
+class="w-2/3 mx-auto max-h-[350px] object-contain rounded-xl border border-zinc-800">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- VENOTRIXX SAYANG PER BABU PAGE -->
+<div onclick="toggleSlide(this)" class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow cursor-pointer">
+
+<div class="flex justify-between items-center">
+<h3 class="font-bold">• Venotrixx</h3>
+<span class="arrow transition duration-300">▼</span>
+</div>
+
+<p class="text-sm text-gray-400">Nexo Win 2-0</p>
+
+<!-- SLIDE -->
+<div class="slide mt-4">
+
+<div class="bg-black p-5 rounded-2xl border border-zinc-800">
+
+<div class="grid grid-cols-2 gap-3 text-center">
+
+<div>
+<p class="mb-1 text-sm">M1</p>
+<img src="Babuimg/Venotrixx/M1.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 1')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+<div>
+<p class="mb-1 text-sm">M2</p>
+<img src="Babuimg/Venotrixx/M2.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 2')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+</div>
+
+<div class="mt-6 text-center">
+<p class="mb-2 font-semibold">NAMA CC</p>
+
+<img src="Babuimg/Venotrixx/Fotocc.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Foto Cc')"
+class="w-2/3 mx-auto max-h-[350px] object-contain rounded-xl border border-zinc-800">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MARGA 97 THE FRINCE BABU PAGE -->
+<div onclick="toggleSlide(this)" class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow cursor-pointer">
+
+<div class="flex justify-between items-center">
+<h3 class="font-bold">• Marga 97</h3>
+<span class="arrow transition duration-300">▼</span>
+</div>
+
+<p class="text-sm text-gray-400">Nexo Win 2-0</p>
+
+<!-- SLIDE -->
+<div class="slide mt-4">
+
+<div class="bg-black p-5 rounded-2xl border border-zinc-800">
+
+<div class="grid grid-cols-2 gap-3 text-center">
+
+<div>
+<p class="mb-1 text-sm">M1</p>
+<img src="Babuimg/Marga97/M1.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 1')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+<div>
+<p class="mb-1 text-sm">M2</p>
+<img src="Babuimg/Marga97/M2.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 2')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+</div>
+
+<div class="mt-6 text-center">
+<p class="mb-2 font-semibold">NAMA CC</p>
+
+<img src="Babuimg/Marga97/Fotocc.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Foto Cc')"
+class="w-2/3 mx-auto max-h-[350px] object-contain rounded-xl border border-zinc-800">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- NEXORA BABU PAGE -->
+<div onclick="toggleSlide(this)" class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow cursor-pointer">
+
+<div class="flex justify-between items-center">
+<h3 class="font-bold">• Nexora</h3>
+<span class="arrow transition duration-300">▼</span>
+</div>
+
+<p class="text-sm text-gray-400">Nexo Win 2-1</p>
+
+<!-- SLIDE -->
+<div class="slide mt-4">
+
+<div class="bg-black p-5 rounded-2xl border border-zinc-800">
+
+<div class="grid grid-cols-2 gap-3 text-center">
+
+<div>
+<p class="mb-1 text-sm">M1</p>
+<img src="Babuimg/Nexora/M1.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 1')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+<div>
+<p class="mb-1 text-sm">M2</p>
+<img src="Babuimg/Nexora/M2.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 2')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+<div>
+<p class="mb-1 text-sm">M3</p>
+<img src="Babuimg/Nexora/M3.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 3')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+</div>
+
+<div class="mt-6 text-center">
+<p class="mb-2 font-semibold">NAMA CC</p>
+
+<img src="Babuimg/Nexora/Fotocc.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Foto Cc')"
+class="w-2/3 mx-auto max-h-[350px] object-contain rounded-xl border border-zinc-800">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- XOURNEX IS BACK BABU PAGE -->
+<div onclick="toggleSlide(this)" class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow cursor-pointer">
+
+<div class="flex justify-between items-center">
+<h3 class="font-bold">• Xournex</h3>
+<span class="arrow transition duration-300">▼</span>
+</div>
+
+<p class="text-sm text-gray-400">Nexo Win 2-0</p>
+
+<!-- SLIDE -->
+<div class="slide mt-4">
+
+<div class="bg-black p-5 rounded-2xl border border-zinc-800">
+
+<div class="grid grid-cols-2 gap-3 text-center">
+
+<div>
+<p class="mb-1 text-sm">M1</p>
+<img src="Babuimg/Xournex/M1.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 1')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+<div>
+<p class="mb-1 text-sm">M2</p>
+<img src="Babuimg/Xournex/M2.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Match 2')"
+class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+</div>
+
+</div>
+
+<div class="mt-6 text-center">
+<p class="mb-2 font-semibold">NAMA CC</p>
+
+<img src="Babuimg/Xournex/Fotocc.jpg"
+onclick="event.stopPropagation(); openImgModal(this.src, 'Foto Cc')"
+class="w-2/3 mx-auto max-h-[350px] object-contain rounded-xl border border-zinc-800">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- SETTINGS PAGE -->
+<div id="settings" class="page hidden">
+<div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800 glow">
+<h3 class="font-bold">⚙️ Settings</h3>
+<p class="text-gray-400 text-sm mt-2">Pengaturan akan segera hadir...</p>
+</div>
+</div>
+
+</div>
+
+<script>
+function toggleSidebar() {
+document.getElementById("sidebar").classList.toggle("-translate-x-full");
+document.getElementById("overlay").classList.toggle("hidden");
+}
+
+function openModal(){
+document.getElementById("logoModal").classList.remove("hidden");
+document.getElementById("logoModal").classList.add("flex");
+}
+
+function closeModal(){
+document.getElementById("logoModal").classList.add("hidden");
+}
+
+function openPage(pageId, el) {
+
+document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
+document.getElementById(pageId).classList.remove("hidden");
+
+const titles = {
+Dashboard: "Dashboard",
+social: "Media Sosial Nexo",
+babu: "All Babu",
+settings: "Settings"
+};
+
+document.getElementById("pageTitle").innerText = titles[pageId];
+
+document.querySelectorAll(".menu-item").forEach(item => {
+item.classList.remove("active");
+});
+
+el.classList.add("active");
+
+toggleSidebar();
+}
+
+function toggleSlide(el){
+const box = el.querySelector(".slide");
+const arrow = el.querySelector(".arrow");
+
+box.classList.toggle("open");
+
+if(box.classList.contains("open")){
+arrow.style.transform = "rotate(180deg)";
+} else {
+arrow.style.transform = "rotate(0deg)";
+}
+}
+
+function openImgModal(src, text){
+document.getElementById("modalImg").src = src;
+document.getElementById("modalText").innerText = text;
+
+const modal = document.getElementById("imgModal");
+modal.classList.remove("hidden");
+modal.classList.add("flex");
+}
+
+function closeImgModal(){
+document.getElementById("imgModal").classList.add("hidden");
+}
+</script>
 
 </body>
-</html> 
+  </html>
