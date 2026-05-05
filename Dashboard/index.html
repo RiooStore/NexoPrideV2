@@ -222,13 +222,13 @@
 
     <div class="flex justify-between items-center">
   <h3 class="font-bold">• Firaun</h3>
-  <span id="arrow" class="transition duration-300">▼</span>
+  <span class="arrow" class="transition duration-300">▼</span>
   </div>
 
   <p class="text-sm text-gray-400">Nexo Win 2-0</p>
 
     <!-- SLIDE -->
-<div id="slideBox" class="slide mt-4">
+<div class="slide" class="slide mt-4">
 
   <!-- MODAL STYLE BOX -->
   <div class="bg-black p-5 rounded-2xl border border-zinc-800">
@@ -321,9 +321,9 @@ function openPage(pageId, el) {
   toggleSidebar();
 }
 
-function toggleSlide(){
-  const box = document.getElementById("slideBox");
-  const arrow = document.getElementById("arrow");
+function toggleSlide(el){
+  const box = el.querySelector(".slide");
+  const arrow = el.querySelector(".arrow");
 
   box.classList.toggle("open");
 
