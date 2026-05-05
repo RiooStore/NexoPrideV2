@@ -27,13 +27,15 @@
       transition: max-height 0.4s ease;
     }
 
-    .slide.open {
-      max-height: 500px;
-    }
-    
-    .slide.open {
-      max-height: 1000px;
-    }
+    .slide {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.slide.open {
+  max-height: 2000px; /* BESARIN ini */
+}
   </style>
 </head>
 
@@ -42,15 +44,20 @@
 <!-- MODAL GAMBAR -->
 <div id="imgModal" class="fixed inset-0 hidden items-center justify-center bg-black/80 z-50">
 
-  <div class="max-w-md w-full p-4 text-center">
-    
+  <!-- AREA LUAR (klik buat close) -->
+  <div onclick="closeImgModal()" class="absolute inset-0"></div>
+
+  <!-- ISI -->
+  <div class="relative max-w-md w-full p-4 text-center z-10">
+
+    <!-- TOMBOL X -->
+    <button onclick="closeImgModal()" class="absolute top-2 right-2 text-white text-xl">
+      ✖
+    </button>
+
     <img id="modalImg" src="" class="w-full max-h-[80vh] object-contain rounded-xl mb-3">
 
     <p id="modalText" class="text-gray-300 text-sm"></p>
-
-    <button onclick="closeImgModal()" class="mt-3 bg-red-500 px-4 py-2 rounded-lg">
-      Tutup
-    </button>
 
   </div>
 
@@ -232,14 +239,14 @@
       <div>
         <p class="mb-1 text-sm">M1</p>
         <img src="Babuimg/Firaun/M1.jpg"
-     onclick="openImgModal(this.src, 'Match 1')"
+     onclick="event.stopPropagation(); openImgModal(this.src, 'Match 1')"
      class="w-full aspect-square object-cover rounded-xl cursor-pointer">
       </div>
 
       <div>
         <p class="mb-1 text-sm">M2</p>
         <img src="Babuimg/Firaun/M2.jpg"
-     onclick="openImgModal(this.src, 'Match 2')"
+     onclick="event.stopPropagation(); openImgModal(this.src, 'Match 2')"
      class="w-full aspect-square object-cover rounded-xl cursor-pointer">
       </div>
 
@@ -250,8 +257,8 @@
       <p class="mb-2 font-semibold">NAMA CC</p>
 
       <img src="Babuimg/Firaun/Fotocc.jpg"
-     onclick="openImgModal(this.src, 'Foto Cc')"
-     class="w-full aspect-square object-cover rounded-xl cursor-pointer">
+     onclick="event.stopPropagation(); openImgModal(this.src, 'Foto Cc')"
+     class="w-full object-contain rounded-xl border border-zinc-800">
     </div>
 
   </div>
